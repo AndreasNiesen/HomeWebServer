@@ -1,0 +1,35 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>legacyPWM</title>
+{% endblock header %}
+{% block body %}
+    <h1 class="mt-5">Password Manager</h1>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input class="mb-2" type="text" id="uname" name="uname" {% if uname %} value="{{ uname }}" {% endif %} placeholder="Username" required><br>
+        <input class="mb-2" type="password" id="passw" name="passw" {% if passw %} value="{{ passw }}" {% endif %} placeholder="Password" required><br>
+        <input class="mb-3" type="text" id="site" name="site" {% if site %} value="{{ site }}" {% endif %} placeholder="Website" required><br>
+        <label class="mr-2">Length: </label>
+        <select id="len" name="len">
+            <option value="1" {% if len == "1" %} selected="selected" {% endif %}>1</option>
+            <option value="2" {% if len == "2" %} selected="selected" {% endif %}>2</option>
+            <option value="4" {% if len == "4" %} selected="selected" {% endif %}>4</option>
+            <option value="8" {% if len == "8" %} selected="selected" {% endif %}>8</option>
+            <option value="16" {% if len == "16" or not len %} selected="selected" {% endif %}>16</option>
+            <option value="32" {% if len == "32" %} selected="selected" {% endif %}>32</option>
+        </select><br>
+        <label class="mr-2"> Numbers?</label><input type="checkbox" {% if num == "yes" or not num %} checked="checked" {% endif %} id="nums" name="nums" value="num"><br>
+        <label class="mr-2"> Specials Chars?</label><input type="checkbox" {% if spec == "yes" or not spec %} checked="checked" {% endif %} id="specs" name="specs" value="spec"><br>
+        <br>
+        <button class="btn btn-lg btn-primary" type="submit">Create Password!</button>
+        <br>
+        <br>
+        <br>
+        {% if result %}
+        <div class="bg-secondary text-light pt-3 pb-3">
+            <h2>{{ result }}</h2>
+        </div>
+        {% endif %}
+    </form>
+{% endblock body %}

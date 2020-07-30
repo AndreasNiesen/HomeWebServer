@@ -1,0 +1,20 @@
+.top-nav {
+    background-color: #010203;
+    color: #f0f0f0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.top-link:link {
+    color: #f0f0f0;
+}
+.top-link:visited {
+    color: #f0f0f0;
+}
+.top-link:hover {
+    color: #f0f0f0;
+}
+.top-link:active {
+    color: #f0f0f0;
+}
