@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import json
 
-with open("config.json") as conf:
+with open("/etc/homewebserver/config.json") as conf:
     config = json.load(conf)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,9 +29,9 @@ SECRET_KEY = config["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    config["SERVER_IP"],
-]
+ALLOWED_HOSTS = []
+for host in config["ALLOWED_HOSTS"].keys():
+    ALLOWED_HOSTS.append(config["ALLOWED_HOSTS"][host])
 
 
 # Application definition
@@ -126,3 +126,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
