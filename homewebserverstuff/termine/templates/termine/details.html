@@ -1,0 +1,14 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {{ termin.termin_name }} Details
+    </title>
+{% endblock header %}
+{% block body %}
+    <h1 class="mt-5">{{ termin.termin_name }} Details:</h1>
+    <br>
+    <div class="mt-2">Datum: {{ termin.date|date:"d.m.Y" }}</div>
+    <div class="mt-2">Uhrzeit: {{ termin.date|date:"H:i" }}</div>
+    <div class="mt-2">Für: {{ termin.user }}</div>
+    <div class="mt-2">Kommentar: {{ termin.comment }}</div>
+{% endblock body %}

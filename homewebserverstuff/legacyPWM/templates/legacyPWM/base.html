@@ -17,7 +17,16 @@
 <body class="text-center bg-dark text-light">
     <header class="top-nav">
         <a class="top-link" href="{% url 'legacy_manager' %}">Legacy PWM</a>
+        <a class="top-link ml-3" href="{% url 'termine_home' %}">Termine</a>
     </header>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     {% block body %}{% endblock %}
 
     <!-- JS, Popper.js, and jQuery -->

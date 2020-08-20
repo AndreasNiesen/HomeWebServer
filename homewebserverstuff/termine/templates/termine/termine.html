@@ -1,0 +1,18 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {% if filterBy %}
+            Termine filtered by {{ filterBy }}
+            with filter value {{ filterValue }}
+        {% else %}
+            Alle Termine
+        {% endif %}
+    </title>
+{% endblock header %}
+{% block body %}
+    <h1 class="mt-5">Termine:</h1>
+    <br>
+    {% for termin in termine %}
+        <a class="mb-1" href="{% url 'termine_details' termin.id %}"> {{ termin }} </a> <br>
+    {% endfor %}
+{% endblock body %}

@@ -1,0 +1,25 @@
+{% extends "legacyPWM/base.html" %}
+{% load static %}
+{% block header %}
+    <title>Neuer Termin</title>
+    <script src="{% url 'js-catalog' %}"></script>
+    <script src="{% static '/admin/js/core.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+    {{ termine.media }}
+{% endblock header %}
+{% block body %}
+    <h1 class="mt-5">Neuer Termin</h1>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        {{ termine.errors }}
+        {{ termine.non_field_errors }}
+        {{ termine.user }} <br>
+        {{ termine.termin_name }} <br>
+        {{ termine.comment }} <br>
+        {{ termine.sdt }} <br>
+        <br>
+        <button class="btn btn-primary" type="submit">Post</button>
+    </form>
+{% endblock body %}
