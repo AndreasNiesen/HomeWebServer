@@ -2,8 +2,7 @@
 {% block header %}
     <title>
         {% if filterBy %}
-            Termine filtered by {{ filterBy }}
-            with filter value {{ filterValue }}
+            Gefilterte Termine
         {% else %}
             Alle Termine
         {% endif %}
@@ -11,6 +10,9 @@
 {% endblock header %}
 {% block body %}
     <h1 class="mt-5">Termine:</h1>
+    {% if filterBy %}
+        <div class="small">({{ filterBy }}: {{ filterValue }})</div>
+    {% endif %}
     <br>
     {% for termin in termine %}
         <a class="mb-1" href="{% url 'termine_details' termin.id %}"> {{ termin }} </a> <br>

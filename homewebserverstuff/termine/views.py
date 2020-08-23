@@ -10,9 +10,15 @@ def termineView(request):
     filterBy = request.GET.get("filterBy", None)
     filterValue = request.GET.get("filterValue", None)
     if filterBy and filterValue:
+        filterBy = filterBy.lower()
         context["filterBy"] = filterBy
         context["filterValue"] = filterValue
-    context["termine"] = termin_model.objects.all()
+        if filterBy == "user":
+            context["termine"] = termin_model.objects.filter(user__username=f"{filterValue}")
+        elif filterBy == "termin_name":
+            context["termine"] = termin_model.objects.filter(termin_name=f"{filterValue}")
+    else:
+        context["termine"] = termin_model.objects.all()
 
     return render(request, "termine/termine.html", context)
 
