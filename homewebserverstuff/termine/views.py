@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import DetailView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, DeleteView
 from .forms import termin_form
 from .models import termin as termin_model
 
@@ -43,3 +44,10 @@ class terminDetailView(DetailView):
     model = termin_model
     template_name = "termine/details.html"
     context_object_name = "termin"
+
+
+class terminDeleteView(DeleteView):
+    model = termin_model
+    template_name = "termine/delete.html"
+    context_object_name = "termin"
+    success_url = reverse_lazy("termine_home")

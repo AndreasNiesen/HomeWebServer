@@ -9,16 +9,17 @@
     {{ termine.media }}
 {% endblock header %}
 {% block body %}
-    <h1 class="mt-5">Neuer Termin</h1>
+    <h1 class="mt-5" style="display:block;font-size:3em;font-weight:bold;color:white;">Neuer Termin</h1>
     <br>
     <form method="POST">
         {% csrf_token %}
         {{ termine.errors }}
         {{ termine.non_field_errors }}
-        {{ termine.user }} <br>
-        {{ termine.termin_name }} <br>
-        {{ termine.comment }} <br>
-        {{ termine.sdt }} <br>
+        <div>{{ termine.user }}</div><br>
+        <div>{{ termine.termin_name }}</div><br>
+        <div>{{ termine.comment }}</div><br>
+        <div><div style="margin-bottom:5px">&ndash;&ndash; Startdatum &ndash;&ndash;</div>{{ termine.sdt }}</div><br>
+        <div><div style="margin-bottom:5px">&ndash;&ndash; Enddatum (optional) &ndash;&ndash;</div>{{ termine.endsdt }}</div><br>
         <br>
         <button class="btn btn-primary" type="submit">Post</button>
     </form>

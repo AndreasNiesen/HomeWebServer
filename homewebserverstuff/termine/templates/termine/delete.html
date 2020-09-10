@@ -1,0 +1,24 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {{ termin.termin_name }} Löschen?
+    </title>
+{% endblock header %}
+{% block body %}
+    <h1 class="mt-5 mb-5">Termin Löschung</h1>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Sicher, dass der Termin<h2>
+            {% if termin.end %}
+                <h2>"{{ termin.termin_name }}", der vom {{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr</h2>
+                <h2>bis zum {{ termin.end|date:"d.m.Y" }} um {{ termin.end|date:"H:i" }} Uhr geht,</h2>
+            {% else %}
+                <h2>"{{ termin.termin_name }}", der am {{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr ist,</h2>
+            {% endif %}
+            <h2 class="mb-5">gelöscht werden soll?</h2>
+            <button class="btn btn-danger" type="submit">Löschen!</button>
+            <a class="btn btn-secondary" href="{% url 'termine_details' termin.id %}">Abbrechen!</a>
+        </form>
+    </div>
+{% endblock body %}
