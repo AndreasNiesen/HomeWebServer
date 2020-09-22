@@ -20,3 +20,8 @@ class termin(models.Model):
     class Meta:
         ordering = ["-date", "user"]
         verbose_name_plural = "termine"
+
+
+class user_additionals(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    discord_id = models.CharField(max_length=50, blank=True, null=True)  # CharField just in case discord ever decides to throw around leading 0s

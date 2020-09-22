@@ -10,7 +10,7 @@ class termin_form(forms.ModelForm):
 
     class Meta:
         model = termin
-        fields = ["user", "termin_name", "comment"]
+        fields = ["user", "termin_name", "comment", "reminder"]
         widgets = {
             "termin_name": forms.TextInput(
                 attrs={"class": "mb-2 mt-2", "placeholder": "Termin Name"}
