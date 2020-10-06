@@ -8,31 +8,37 @@
         {% endif %}
     </title>
 {% endblock header %}
+
 {% block body %}
-    <h1 class="mt-5">Termine:</h1>
-    {% if filterBy %}
-        <div class="small">({{ filterBy }}: {{ filterValue }})</div>
-    {% endif %}
-    <br>
-    {% for termin in termine %}
-        <a class="mb-1" href="{% url 'termine_details' termin.id %}"> {{ termin }} </a> <br>
-    {% endfor %}
-    <div class=" mt-5">
-        <a class="btn btn-secondary" href="{% url 'termine_new' %}">Neuer Termin</a>
-    </div>
-    <div class=" mt-5">
+    <main class="ext-container termine-main-content">
+        <h1>Termine</h1>
+        {% if filterBy %}
+            <h2>{{ filterBy }}: {{ filterValue }}</h2>
+        {% else %}
+            <h2>Übersicht</h2>
+        {% endif %}
+        <div class="termine-terminliste">
+            {% for termin in termine %}
+                <a href="{% url 'termine_details' termin.id %}"> {{ termin }} </a>
+            {% endfor %}
+        </div>
+        <a class="termine-a-as-btn" href="{% url 'termine_new' %}">Neuer Termin</a>
         <form method="GET">
-            Filter:
-            <select class="ml-2" id="filterBy" name="filterBy">
-                <option disabled selected hidden>Filter</option>
-                <option value="user">Nutzername</option>
-                <option value="termin_name">Terminname</option>
-            </select>
-            <br>
-            Wert:
-            <input class="mt-2 ml-2" type="text" id="filterValue" name="filterValue" placeholder="Nutzer- oder Terminname">
-            <br>
-            <button class="mt-3 btn btn-secondary" type="submit">Filtern!</button>
+            <div class="termine-filter-form">
+                <div class="termine-filter-form-input">
+                    <div class="termine-wrap-select">
+                        <select id="filterBy" name="filterBy">
+                            <option disabled selected hidden>Filter:</option>
+                            <option value="user">Nutzername</option>
+                            <option value="termin_name">Terminname</option>
+                        </select>
+                    </div>
+                    <div class="termine-wrap-input">
+                        <input class="termine-inp" type="text" id="filterValue" name="filterValue" placeholder="Nutzer- oder Terminname">
+                    </div>
+                </div>
+                <button class="termine-filter-btn" type="submit">Filtern!</button>
+            </div>
         </form>
-    </div>
+    </main>
 {% endblock body %}

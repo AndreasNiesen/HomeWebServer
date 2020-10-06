@@ -4,15 +4,18 @@
         {{ termin.termin_name }} Details
     </title>
 {% endblock header %}
+
 {% block body %}
-    <h1 class="mt-5">{{ termin.termin_name }} Details:</h1>
-    <br>
-    <div class="mt-2">Startdatum: {{ termin.date|date:"d.m.Y" }}</div>
-    <div class="mt-2">Uhrzeit: {{ termin.date|date:"H:i" }}</div>
-    <div class="mt-2">Enddatum: {{ termin.end|date:"d.m.Y" }}</div>
-    <div class="mt-2">Uhrzeit: {{ termin.end|date:"H:i" }}</div>
-    <div class="mt-2">Für: {{ termin.user }}</div>
-    <div class="mt-2">Erinnerung: {{ termin.reminder }}</div>
-    <div class="mt-2" style="white-space: pre-line">Kommentar:<br>{{ termin.comment }}</div>
-    <a class="btn btn-danger mt-5" href="{% url 'termine_delete' termin.id %}">Löschen</button>
+    <main class="ext-container termine-details-content">
+        <h1>{{ termin.termin_name }}</h1>
+        <h2>Details</h2>
+        <label>Für:</label><div class="termin-details-detail">{{ termin.user }}</div>
+        <label>Beginnt:</label><div class="termin-details-detail">{{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr</div>
+        {% if termin.end %}
+            <label>Endet:</label><div class="termin-details-detail">{{ termin.end|date:"d.m.Y" }} um {{ termin.end|date:"H:i" }} Uhr</div>
+        {% endif %}
+        <label>Erinnerung:</label><div class="termin-details-detail">{% if termin.reminder %}Aktiv{% else %}Inaktiv{% endif %}</div>
+        <label>Kommentar:</label><div class="termin-details-detail">{{ termin.comment }}</div>
+        <a class="termine-a-as-btn" style="margin-top: 2.5em;margin-left:1em;" href="{% url 'termine_delete' termin.id %}">Löschen</a>
+    </main>
 {% endblock body %}

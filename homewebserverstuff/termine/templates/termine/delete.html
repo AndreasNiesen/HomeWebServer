@@ -4,21 +4,30 @@
         {{ termin.termin_name }} Löschen?
     </title>
 {% endblock header %}
+
 {% block body %}
-    <h1 class="mt-5 mb-5">Termin Löschung</h1>
-    <div>
+    <main class="ext-container termine-delete-content">
+        <h1>Termin Löschung</h1>
         <form method="POST">
             {% csrf_token %}
-            <h2>Sicher, dass der Termin<h2>
-            {% if termin.end %}
-                <h2>"{{ termin.termin_name }}", der vom {{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr</h2>
-                <h2>bis zum {{ termin.end|date:"d.m.Y" }} um {{ termin.end|date:"H:i" }} Uhr geht,</h2>
-            {% else %}
-                <h2>"{{ termin.termin_name }}", der am {{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr ist,</h2>
-            {% endif %}
-            <h2 class="mb-5">gelöscht werden soll?</h2>
-            <button class="btn btn-danger" type="submit">Löschen!</button>
-            <a class="btn btn-secondary" href="{% url 'termine_details' termin.id %}">Abbrechen!</a>
+            <div class="termine-del-desciption">
+                Sicher, dass der Termin<br>
+                "{{ termin.termin_name }}"<br>
+                {% if termin.end %}
+                    vom<br>
+                    {{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr<br>
+                    bis zum<br>
+                    {{ termin.end|date:"d.m.Y" }} um {{ termin.end|date:"H:i" }} Uhr<br>
+                {% else %}
+                    am<br>
+                    {{ termin.date|date:"d.m.Y" }} um {{ termin.date|date:"H:i" }} Uhr<br>
+                {% endif %}
+                    gelöscht werden soll?
+            </div>
+            <div class="termine-del-submits">
+                <button class="termine-del-btn" type="submit">Löschen!</button>
+                <a class="termine-a-as-btn termine-del-a-btn" href="{% url 'termine_details' termin.id %}">Abbrechen</a>
+            </div>
         </form>
-    </div>
+    </main>
 {% endblock body %}
