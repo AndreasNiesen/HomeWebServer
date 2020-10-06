@@ -20,7 +20,7 @@ app.autodiscover_tasks()
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(crontab(minute="*/10"), termin_reminder.s(), name="termin_reminder")
-    sender.add_periodic_task(crontab(hour=0, minute=1), termin_deleter.s(), name="termin_deleter")
+    sender.add_periodic_task(crontab(hour=3, minute=1), termin_deleter.s(), name="termin_deleter")
 
 
 @app.task
@@ -55,5 +55,5 @@ def termin_reminder():
 def termin_deleter():
     # roughly translates to sql: SELECT * FROM termin WHERE (date < timezone.localtime - 24 hours AND end is Null) OR (end < timezone.localtime - 24 hours)
     filtered_termine = termin_model.objects.filter(Q(Q(date__lt=timezone.localtime() - timezone.timedelta(days=1)) & Q(end=None)) | Q(end__lt=timezone.localtime() - timezone.timedelta(days=1)))
-    for filtered_termin in filtered_termine.values:
+    for filtered_termin in filtered_termine:
         filtered_termin.delete()
