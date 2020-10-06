@@ -16,6 +16,7 @@
         {% endif %}
         <label>Erinnerung:</label><div class="termin-details-detail">{% if termin.reminder %}Aktiv{% else %}Inaktiv{% endif %}</div>
         <label>Kommentar:</label><div class="termin-details-detail">{{ termin.comment }}</div>
-        <a class="termine-a-as-btn" style="margin-top: 2.5em;margin-left:1em;" href="{% url 'termine_delete' termin.id %}">Löschen</a>
+        <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'termine_home' %}">Zurück</a>
+        <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'termine_delete' termin.id %}">Löschen</a>
     </main>
 {% endblock body %}

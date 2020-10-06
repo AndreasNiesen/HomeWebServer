@@ -396,6 +396,11 @@ button.pwm-submit-btn:hover {
     font-size: 1.1rem;
 }
 
+.termine-a-as-btn.termine-details-a-btn {
+    margin-top: 2.5em;
+    margin-left:1em;
+}
+
 /*
  termine-delete design
 */
@@ -413,7 +418,7 @@ button.pwm-submit-btn:hover {
     justify-content: center;
 }
 
-.termine-del-a-btn {
+.termine-a-as-btn.termine-del-a-btn {
     border-style: none;
     border-radius: 0px 15px 15px 0px;
     font-size: 1.2rem;
