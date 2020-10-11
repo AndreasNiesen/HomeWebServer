@@ -13,10 +13,10 @@ class termin_form(forms.ModelForm):
         fields = ["user", "termin_name", "comment", "reminder"]
         widgets = {
             "termin_name": forms.TextInput(
-                attrs={"class": "mb-2 mt-2", "placeholder": "Termin Name"}
+                attrs={"placeholder": "Termin Name"}
             ),
             "comment": forms.Textarea(
-                attrs={"class": "mb-2", "placeholder": "Termin Kommentar (optional)"}
+                attrs={"placeholder": "Termin Kommentar (optional)"}
             ),
         }
 

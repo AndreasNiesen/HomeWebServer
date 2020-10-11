@@ -18,6 +18,68 @@ body {
         / 2fr    4fr    2fr;
 }
 
+ul.base-messages {
+    top: 2rem;
+    left: 0px;
+    position: fixed;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    z-index: 999;
+}
+
+li.base-message{
+    display: flex;
+    width: 20rem;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0px 20px 20px 0px;
+    border-style: solid solid solid hidden;
+    border-width: 5px;
+    font-weight: bold;
+}
+
+.base-message.base-message-success {
+    background: #85e085;
+    color: black;
+    border-color: #33cc33;
+}
+
+.base-message.base-message-debug {
+    background: linear-gradient(to right, blue, red);
+    color: white;
+    border-color: red;
+}
+
+.base-message.base-message-info {
+    background: #33ccff;
+    color: black;
+    border-color: #0033cc;
+}
+
+.base-message.base-message-warning {
+    background: #ffcc00;
+    color: black;
+    border-color: #ff6600;
+}
+
+.base-message.base-message-error {
+    background: #ff1a1a;
+    color: black;
+    border-color: #b30000;
+}
+
+ul.base-messages input[type=checkbox] {
+    display: none;
+}
+
+ul.base-messages input[type=checkbox]:checked ~ label {
+    display: none;
+}
+
 header {
     grid-area: header;
     background-color: rgba(0, 0, 0, 0.55);
@@ -541,4 +603,51 @@ button.pwm-submit-btn:hover {
 .termineu-time-info {
     display: inline-block;
     position: relative;
+}
+
+/*
+ audiob-main design
+*/
+
+.audiob-main-content {
+    background-color: #3A506B;
+    color: #d0d0d0;
+}
+
+.blockify-django-auto-input {
+    display: block;
+    margin-bottom: 0.7em;
+}
+
+.blockify-django-auto-input label {
+    margin-right: 1rem;
+}
+
+/*
+ audiob-author-neu design
+*/
+
+.audiob-author-new-content {
+    background-color: #3A506B;
+    color: #d0d0d0;
+}
+
+.author-create-btn {
+    margin-right: 10px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.3em 1em;
+    border-radius: 20px;
+    border-style: none;
+    background-color: #7CC6FE;
+    color: #0B132B;
+}
+/*
+ audiob-audiob-neu design
+*/
+
+.audiob-audiob-new-content {
+    background-color: #3A506B;
+    color: #d0d0d0;
 }

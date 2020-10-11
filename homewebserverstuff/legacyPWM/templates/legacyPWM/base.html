@@ -14,11 +14,20 @@
     {% block header %}{% endblock %}
 </head>
 <body>
+    {% if messages %}
+        <ul class="base-messages">
+            {% for message in messages %}
+                <input type="checkbox" id="message_{{ forloop.counter0 }}" name="message_{{ forloop.counter0 }}">
+                <label for="message_{{ forloop.counter0 }}"><li class="base-message base-message-{{ message.tags }}">{{ message }}</li></label>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <header>
         <nav>
             <ul>
                 <li><a class="base-header base-bars" href="{% url 'legacy_manager' %}">Legacy PWM</a></li>
                 <li><a class="base-header base-bars" href="{% url 'termine_home' %}">Termine</a></li>
+                <li><a class="base-header base-bars" href="{% url 'audiob_home' %}">Hörbücher</a></li>
             </ul>
         </nav>
     </header>

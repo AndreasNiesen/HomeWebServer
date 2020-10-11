@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, DeleteView
 from .forms import termin_form
@@ -46,8 +47,14 @@ class terminDetailView(DetailView):
     context_object_name = "termin"
 
 
-class terminDeleteView(DeleteView):
+class terminDeleteView(SuccessMessageMixin, DeleteView):
     model = termin_model
     template_name = "termine/delete.html"
     context_object_name = "termin"
     success_url = reverse_lazy("termine_home")
+    success_message = "Termin erfolgreich gelöscht."
+
+    # success_message alone doesn't work for DeleteViews
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(terminDeleteView, self).delete(request, *args, **kwargs)
