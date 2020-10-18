@@ -1,0 +1,20 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {{ author }} Löschen?
+    </title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-main-content"> <!-- TODO: change to audiob-authors-delete-content -->
+        <h1>Autoren Löschung</h1>
+        <form method="POST">
+            {% csrf_token %}
+            Sicher, dass "{{ author }}" gelöscht werden soll?
+            <div class="termine-del-submits">
+                <button class="termine-del-btn" type="submit">Löschen!</button>
+                <a class="termine-a-as-btn termine-del-a-btn" href="{% url 'author_details' author.id %}">Abbrechen</a>
+            </div>
+        </form>
+    </main>
+{% endblock body %}

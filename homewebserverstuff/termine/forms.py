@@ -23,8 +23,6 @@ class termin_form(forms.ModelForm):
     def save(self, commit=True):
         model = super().save(commit=False)
         model.date = timezone.localtime(self.cleaned_data["sdt"])
-        print(self.cleaned_data["endsdt"])
-        print(timezone.localtime(self.cleaned_data["endsdt"]))
         if self.cleaned_data["endsdt"]:
             model.end = timezone.localtime(self.cleaned_data["endsdt"])
         if commit:

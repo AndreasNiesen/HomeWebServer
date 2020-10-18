@@ -1,0 +1,51 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>Neuer Autor</title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-author-new-content">
+        <h1>Autor Bearbeiten</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="blockify-django-auto-input">
+                <input type="text" name="title" {% if author.title %}value="{{ author.title }}"{% endif %} maxlength="100" id="id_title">
+                <label for="id_title">Titel</label>
+            </div>
+            <div class="blockify-django-auto-input">
+                <input type="text" name="name_first" {% if author.name_first %}value="{{ author.name_first }}"{% endif %} maxlength="100" id="id_name_first">
+                <label for="id_name_first">Vorname:</label>
+            </div>
+            <div class="blockify-django-auto-input">
+                <input type="text" name="name_mids" {% if author.name_mids %}value="{{ author.name_mids }}"{% endif %} maxlength="300" id="id_name_mids">
+                <label for="id_name_mids">Zweitnamen:</label>
+            </div>
+            <div class="blockify-django-auto-input">
+                <input type="text" name="name_last" {% if author.name_last %}value="{{ author.name_last }}"{% endif %} maxlength="100" required id="id_name_last">
+                <label for="id_name_last">Nachname:</label>
+            </div>
+            <div class="blockify-django-auto-input">
+                <input type="text" name="aliases" {% if author.aliases %}value="{{ author.aliases }}"{% endif %} maxlength="500" id="id_aliases">
+                <label for="id_aliases">Aliase</label>
+            </div>
+            <div class="blockify-django-auto-input">
+                <input type="text" name="anzeige_name" {% if author.anzeige_name %}value="{{ author.anzeige_name }}"{% endif %} maxlength="300" id="id_anzeige_name">
+                <label for="id_anzeige_name">Anzeige name</label>
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_birth">Geburtstag:</label>
+                <input type="date" name="birth" id="id_birth" {% if author.birth %}value="{{ author.birth|date:"Y-m-d" }}"{% endif %}>
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_death">Todestag:</label>
+                <input type="date" name="death" id="id_death" {% if author.death %}value="{{ author.death|date:"Y-m-d" }}"{% endif %}>
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_alive">Lebendig:</label><input type="checkbox" name="alive" id="id_alive" {% if author.alive %}checked{% endif %}>
+            </div>
+
+            <button class="author-create-btn" type="submit">Updaten!</button>
+            <a class="termine-a-as-btn" href="{% url 'author_details' author.id %}">Zurück</a>
+        </form>
+    </main>
+{% endblock body %}

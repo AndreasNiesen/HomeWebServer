@@ -1,0 +1,33 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>Neuer Autor</title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-audiob-new-content">
+        <h1>Neues Hörbuch</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div style="display:block;">{{ audiobook.authors }}</div>
+            <div style="display:block;">{{ audiobook.name }}</div>
+            <div style="display:block;">{{ audiobook.release_book }}</div>
+            <div style="display:block;">{{ audiobook.release_book_germany }}</div>
+            <div style="display:block;">{{ audiobook.release_as_audio }}</div>
+            <div style="display:block;">{{ audiobook.synopsis }}</div>
+            <div style="display:block;">{{ audiobook.ro_ss }}</div>
+            <div style="display:block;">{{ audiobook.shortened }}</div>
+            <div style="display:block;">{{ audiobook.boxset }}</div>
+            <div style="display:block;">{{ audiobook.boxset_name }}</div>
+            <div style="display:block;">{{ audiobook.mp3CD }}</div>
+            <div style="display:block;">{{ audiobook.digital_only }}</div>
+            <div style="display:block;">{{ audiobook.amount_CDs }}</div>
+            <div style="display:block;">{{ audiobook.genre }}</div>
+            <div style="display:block;">{{ audiobook.comments }}</div>
+            <div style="display:block;">{{ audiobook.runtime }}</div>
+            <button class="termine-create-btn" type="submit">Erstellen!</button>
+        </form>
+    </main>
+{% endblock body %}
+
+
+<!-- fields = "authors", "name", "release_book", "release_book_germany", "release_as_audio", "synopsis", "ro_ss", "shortened", "boxset", "boxset_name", "mp3CD", "digital_only", "amount_CDs", "genre", "comments", "runtime" -->

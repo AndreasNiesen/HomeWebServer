@@ -1,0 +1,43 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {{ author }} Details
+    </title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-main-content"> <!-- TODO: change to audiob-authors-detail-content -->
+        <h1>{{ author }}</h1>
+        <h2>Details</h2>
+
+        {% if author.title %}
+            {{ author.title }}  <br />
+        {% endif %}
+        {% if author.name_first %}
+            {{ author.name_first }} <br />
+        {% endif %}
+        {% if author.name_mids %}
+            {{ author.name_mids }} <br />
+        {% endif %}
+        {{ author.name_last }} <br />
+        {% if author.aliases %}
+            {{ author.aliases }} <br />
+        {% endif %}
+        {% if author.birth %}
+            {{ author.birth }} <br />
+        {% endif %}
+        {% if author.death %}
+            {{ author.death }} <br />
+        {% endif %}
+        {% if author.alive %}
+            {{ author.alive }} <br />
+        {% endif %}
+        {% if author.anzeige_name %}
+            {{ author.anzeige_name }} <br />
+        {% endif %}
+
+        <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'authors_home' %}">Zurück</a>
+        <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'author_edit' author.id %}">Bearbeiten</a>
+        <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'author_delete' author.id %}">Löschen</a>
+    </main>
+{% endblock body %}

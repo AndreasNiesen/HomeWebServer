@@ -1,0 +1,46 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>Neuer Autor</title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-author-new-content">
+        <h1>Neuer Autor</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="blockify-django-auto-input">
+                {{ author.title }}
+            </div>
+            <div class="blockify-django-auto-input">
+                {{ author.name_first }}
+            </div>
+            <div class="blockify-django-auto-input">
+                {{ author.name_mids }}
+            </div>
+            <div class="blockify-django-auto-input">
+                {{ author.name_last }}
+            </div>
+            <div class="blockify-django-auto-input">
+                {{ author.aliases }}
+            </div>
+            <div class="blockify-django-auto-input">
+                {{ author.anzeige_name }}
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_birth">Geburtstag:</label>
+                <input type="date" name="birth" id="id_birth">
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_death">Todestag:</label>
+                <input type="date" name="death" id="id_death">
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_alive">Lebendig:</label>{{ author.alive }}
+            </div>
+
+            <button class="author-create-btn" type="submit">Erstellen!</button>
+        </form>
+    </main>
+{% endblock body %}
+
+<!-- fields = ["title", "name_first", "name_mids", "name_last", "aliases", "birth", "death", "alive"] -->

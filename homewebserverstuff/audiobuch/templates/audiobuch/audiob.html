@@ -1,0 +1,23 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {% if filterBy %}
+            Gefilterte Hörbücher
+        {% else %}
+            Alle Hörbücher
+        {% endif %}
+    </title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-main-content">
+        <h1>hier kommmt hörbuch kram hin!</h1>
+        {% for audiobook in audiobooks %}
+            <div style="display:block;">{{ audiobook }}</div>
+        {% endfor %}
+
+        <a class="termine-a-as-btn" href="{% url 'authors_home' %}">Autoren</a>
+        <!-- TODO: zu autor-übersicht -->
+        <!-- TODO: hörbücher hinzufügen -->
+    </main>
+{% endblock body %}

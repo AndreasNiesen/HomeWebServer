@@ -25,6 +25,7 @@ urlpatterns = [
     path('', legacy_views.legacyManager, name="legacy_manager"),
     path('termine/', include('termine.urls')),
     path("jsi18n", JavaScriptCatalog.as_view(), name="js-catalog"),
+    path('hörbücher/', include('audiobuch.urls')),
 ]
 
 if settings.DEBUG:

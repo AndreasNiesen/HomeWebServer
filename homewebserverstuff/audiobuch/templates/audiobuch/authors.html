@@ -1,0 +1,47 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {% if filterBy %}
+            Gefilterte Autoren
+        {% else %}
+            Alle Autoren
+        {% endif %}
+    </title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-main-content"> <!-- TODO: change to audiob-authors-content -->
+        <h1>Autoren</h1>
+        {% if filterBy and filterValue %}
+        <h2>{{ filterBy }} : {{ filterValue }}</h2>
+        {% endif %}
+        <h2></h2>
+        <div class="termine-terminliste">
+            {% for author in authors %}
+                <a href="{% url 'author_details' author.id %}"> {{ author }} </a>
+            {% endfor %}
+        </div>
+        <a class="termine-a-as-btn" href="{% url 'author_new' %}">Neuen Autor hinzufügen</a>
+        <form method="GET">
+            <div class="termine-filter-form">
+                <div class="termine-filter-form-input">
+                    <div class="termine-wrap-select">
+                        <select id="filterBy" name="filterBy">
+                            <option disabled selected hidden>Filter:</option>
+                            <option value="title">Titel</option>
+                            <option value="vorname">Vorname</option>
+                            <option value="zweitname">Zweitname</option>
+                            <option value="nachname">Nachname</option>
+                            <option value="alias">Alias</option>
+                            <option value="anzeigename">Angezeigter Name</option>
+                        </select>
+                    </div>
+                    <div class="termine-wrap-input">
+                        <input class="termine-inp" type="text" id="filterValue" name="filterValue" placeholder="Filter-Wert">
+                    </div>
+                </div>
+                <button class="termine-filter-btn" type="submit">Filtern!</button>
+            </div>
+        </form>
+    </main>
+{% endblock body %}
