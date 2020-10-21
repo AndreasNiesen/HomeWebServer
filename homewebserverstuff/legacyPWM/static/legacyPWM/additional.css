@@ -637,6 +637,63 @@ button.pwm-submit-btn:hover {
 }
 
 /*
+ audiob-authors-content design
+*/
+
+.audiob-authors-content {
+    background-color: #3A506B;
+    color: #d0d0d0;
+}
+
+.audiob-authors-content h1 {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.audiob-authors-content h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 0.3em;
+    margin-bottom: 2em;
+    font-weight: 400;
+}
+
+.pagination {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.pagination-a-as-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 2.2em;
+    height: 2.2em;
+    background-color: #7CC6FE;
+    color: #0B132B;
+    border-style: solid;
+    border-radius: 100%;
+    border-width: 0px;
+    box-sizing: border-box;
+    transition: border-width 50ms ease-in;
+    font-weight: bold;
+}
+
+.pagination-a-as-btn.current-page {
+    font-size: 1.2rem;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.pagination-a-as-btn:focus,
+.pagination-a-as-btn:hover {
+    border-width: 2px;
+}
+
+/*
  audiob-author-neu design
 */
 

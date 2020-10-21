@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, DeleteView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import author_form, audiobook_form
 from .models import audiobook as audiobook_model
 from .models import author as author_model
@@ -10,6 +11,8 @@ from .models import author as author_model
 
 def authors_home(request):
     context = {}
+    context["request"] = request
+    pagination_page = request.GET.get("page", 1)
     filterBy = request.GET.get("filterBy", None)
     filterValue = request.GET.get("filterValue", None)
     if filterBy and filterValue:
@@ -17,19 +20,29 @@ def authors_home(request):
         context["filterBy"] = filterBy
         context["filterValue"] = filterValue
         if filterBy == "title":
-            context["authors"] = author_model.objects.filter(title=f"{filterValue}")
+            authors = author_model.objects.filter(title=f"{filterValue}")
         elif filterBy == "vorname":
-            context["authors"] = author_model.objects.filter(name_first=f"{filterValue}")
+            authors = author_model.objects.filter(name_first=f"{filterValue}")
         elif filterBy == "zweitname":
-            context["authors"] = author_model.objects.filter(name_mids__contains=f"{filterValue}")
+            authors = author_model.objects.filter(name_mids__contains=f"{filterValue}")
         elif filterBy == "nachname":
-            context["authors"] = author_model.objects.filter(name_last=f"{filterValue}")
+            authors = author_model.objects.filter(name_last=f"{filterValue}")
         elif filterBy == "alias":
-            context["authors"] = author_model.objects.filter(aliases__contains=f"{filterValue}")
+            authors = author_model.objects.filter(aliases__contains=f"{filterValue}")
         elif filterBy == "anzeigename":
-            context["authors"] = author_model.objects.filter(anzeige_name__contains=f"{filterValue}")
+            authors = author_model.objects.filter(anzeige_name__contains=f"{filterValue}")
     else:
-        context["authors"] = author_model.objects.all()
+        authors = author_model.objects.all()
+
+    paginator = Paginator(authors, 5)
+    try:
+        context["authors"] = paginator.page(pagination_page)
+    except PageNotAnInteger:
+        messages.warning(request, "Das page-attribut akzeptiert nur Ints!")
+        context["authors"] = paginator.page(1)
+    except EmptyPage:
+        messages.info(request, "Diese Seitenzahl existiert nicht.")
+        context["authors"] = paginator.page(paginator.num_pages)
 
     return render(request, "audiobuch/authors.html", context)
 
@@ -64,12 +77,10 @@ class authorUpdateView(UpdateView):
 
     def form_valid(self, form):
         if not form.instance.anzeige_name:
-            print("hier")
             anzeige_name = ""
             if form.instance.name_first:
                 anzeige_name = f"{ str(form.instance.name_first) } "
             anzeige_name += str(form.instance.name_last)
-            print(anzeige_name)
             form.instance.anzeige_name = anzeige_name
         return super().form_valid(form)
 
