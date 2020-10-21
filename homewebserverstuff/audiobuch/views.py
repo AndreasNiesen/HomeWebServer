@@ -34,7 +34,7 @@ def authors_home(request):
     else:
         authors = author_model.objects.all()
 
-    paginator = Paginator(authors, 5)
+    paginator = Paginator(authors, 10)
     try:
         context["authors"] = paginator.page(pagination_page)
     except PageNotAnInteger:
@@ -73,7 +73,7 @@ class authorUpdateView(UpdateView):
     model = author_model
     template_name = "audiobuch/edit_author.html"
     context_object_name = "author"
-    fields = ["title", "name_first", "name_mids", "name_last", "aliases", "birth", "death", "alive", "anzeige_name"]
+    fields = ["title", "name_first", "name_mids", "name_last", "aliases", "birth", "death", "alive", "anzeige_name", "remarks"]
 
     def form_valid(self, form):
         if not form.instance.anzeige_name:

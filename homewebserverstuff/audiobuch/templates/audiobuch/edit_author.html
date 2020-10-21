@@ -1,6 +1,6 @@
 {% extends "legacyPWM/base.html" %}
 {% block header %}
-    <title>Neuer Autor</title>
+    <title>Bearbeite {{ author.anzeige_name }}</title>
 {% endblock header %}
 
 {% block body %}
@@ -42,6 +42,10 @@
             </div>
             <div class="blockify-django-auto-input">
                 <label for="id_alive">Lebendig:</label><input type="checkbox" name="alive" id="id_alive" {% if author.alive %}checked{% endif %}>
+            </div>
+            <div class="blockify-django-auto-input">
+                <label for="id_remarks">Anmerkungen:</label><br />
+                <textarea name="remarks" cols="40" rows="5" placeholder="Keine Anmerkungen vorhanden." aria-label="remarks" id="id_remarks">{% if author.remarks %}{{ author.remarks }}{% endif %}</textarea>
             </div>
 
             <button class="author-create-btn" type="submit">Updaten!</button>

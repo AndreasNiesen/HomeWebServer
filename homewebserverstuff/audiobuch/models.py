@@ -18,7 +18,8 @@ class author(models.Model):
     birth = models.DateField(blank=True, null=True)
     death = models.DateField(blank=True, null=True)
     alive = models.BooleanField(default=False)
-    anzeige_name = models.CharField(max_length=300, blank=True, null="True")
+    anzeige_name = models.CharField(max_length=300, blank=True, null=True)
+    remarks = models.TextField(blank=True)
 
     class Meta:
         ordering = ["anzeige_name", "birth"]

@@ -35,6 +35,9 @@
         {% if author.anzeige_name %}
             {{ author.anzeige_name }} <br />
         {% endif %}
+        {% if author.remarks %}
+            {{ author.remarks }} <br />
+        {% endif %}
 
         <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'authors_home' %}">Zurück</a>
         <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'author_edit' author.id %}">Bearbeiten</a>

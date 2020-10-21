@@ -27,6 +27,9 @@
                 {{ author.anzeige_name }}
             </div>
             <div class="blockify-django-auto-input">
+                {{ author.remarks }}
+            </div>
+            <div class="blockify-django-auto-input">
                 <label for="id_birth">Geburtstag:</label>
                 <input type="date" name="birth" id="id_birth">
             </div>
@@ -39,6 +42,7 @@
             </div>
 
             <button class="author-create-btn" type="submit">Erstellen!</button>
+            <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'authors_home' %}">Zurück</a>
         </form>
     </main>
 {% endblock body %}

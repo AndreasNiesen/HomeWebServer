@@ -5,7 +5,7 @@ from .models import author, audiobook
 class author_form(forms.ModelForm):
     class Meta:
         model = author
-        fields = ["title", "name_first", "name_mids", "name_last", "aliases", "birth", "death", "alive", "anzeige_name"]
+        fields = ["title", "name_first", "name_mids", "name_last", "aliases", "birth", "death", "alive", "anzeige_name", "remarks"]
         widgets = {
             "title": forms.TextInput(
                 attrs={"placeholder": "Titel", "aria-label": "title"}
@@ -24,6 +24,9 @@ class author_form(forms.ModelForm):
             ),
             "anzeige_name": forms.TextInput(
                 attrs={"placeholder": "Anzeige Name", "aria-label": "anzeige_name"}
+            ),
+            "remarks": forms.Textarea(
+                attrs={"placeholder": "Anmerkungen", "aria-label": "remarks", "rows": "5"}
             ),
         }
 
