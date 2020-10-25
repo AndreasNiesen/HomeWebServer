@@ -1,0 +1,55 @@
+{% extends "legacyPWM/base.html" %}
+{% block header %}
+    <title>
+        {{ audiobook }} Details
+    </title>
+{% endblock header %}
+
+{% block body %}
+    <main class="ext-container audiob-main-content"> <!-- TODO: change to audiob-authors-detail-content -->
+        <h1>{{ audiobook }}</h1>
+        <h2>Details</h2>
+        <h3 style="padding:0;margin:0;">Autoren:</h3>
+        {% for author in audiobook.authors.all %}
+            <p style="padding-left:3em;">{{ author }}</p>
+        {% endfor %}
+        <h3 style="padding:0;margin:0;">Name:</h3>
+        <p style="padding-left:3em;">{{ audiobook.name }}</p>
+        <h3 style="padding:0;margin:0;">Erscheinungsdatum Buch (original):</h3>
+        <p style="padding-left:3em;">{{ audiobook.release_book }}</p>
+        <h3 style="padding:0;margin:0;">Erscheinungsdatum Buch (deutschland):</h3>
+        <p style="padding-left:3em;">{{ audiobook.release_book_germany }}</p>
+        <h3 style="padding:0;margin:0;">Erscheinungsdatum Hörbuch:</h3>
+        <p style="padding-left:3em;">{{ audiobook.release_as_audio }}</p>
+        <h3 style="padding:0;margin:0;">Synopsis</h3>
+        <p style="padding-left:3em;">{{ audiobook.synopsis }}</p>
+        <h3 style="padding:0;margin:0;">Typ:</h3>
+        {% if audiobook.ro_ss == 'ro' %}
+            <p style="padding-left:3em;">Roman</p>
+        {% else %}
+            <p style="padding-left:3em;">Kurzgeschichte</p>
+        {% endif %}
+        <h3 style="padding:0;margin:0;">Gekürzt?</h3>
+        <p style="padding-left:3em;">{{ audiobook.shortened }}</p>
+        <h3 style="padding:0;margin:0;">Teil eines Boxsets?</h3>
+        <p style="padding-left:3em;">{{ audiobook.boxset }}</p>
+        {% if audiobook.boxset %}
+            <h3 style="padding:0;margin:0;">Boxset:</h3>
+            <p style="padding-left:3em;">{{ audiobook.boxset_name }}</p>
+        {% endif %}
+        <h3 style="padding:0;margin:0;">Mp3 CD?</h3>
+        <p style="padding-left:3em;">{{ audiobook.mp3CD }}</p>
+        <h3 style="padding:0;margin:0;">Nur Digital?</h3>
+        <p style="padding-left:3em;">{{ audiobook.digital_only }}</p>
+        <h3 style="padding:0;margin:0;">CDs:</h3>
+        <p style="padding-left:3em;">{{ audiobook.amount_CDs }}</p>
+        <h3 style="padding:0;margin:0;">Genre:</h3>
+        <p style="padding-left:3em;">{{ audiobook.genre }}</p>
+        <h3 style="padding:0;margin:0;">Kommentare:</h3>
+        <p style="padding-left:3em;">{{ audiobook.comments }}</p>
+        <h3 style="padding:0;margin:0;">Laufzeit (in Minuten):</h3>
+        <p style="padding-left:3em;">{{ audiobook.runtime }}</p>
+
+        <a class="termine-a-as-btn termine-details-a-btn" href="{% url 'audiob_home' %}">Zurück</a>
+    </main>
+{% endblock body %}

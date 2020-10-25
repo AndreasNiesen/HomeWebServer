@@ -1,6 +1,9 @@
 {% extends "legacyPWM/base.html" %}
+{% load static %}
 {% block header %}
-    <title>Neuer Autor</title>
+    <script defer src="{% static 'legacyPWM/new_audiobook.js' %}"></script>
+
+    <title>Neues Hörbuch</title>
 {% endblock header %}
 
 {% block body %}
@@ -8,26 +11,32 @@
         <h1>Neues Hörbuch</h1>
         <form method="POST">
             {% csrf_token %}
-            <div style="display:block;">{{ audiobook.authors }}</div>
-            <div style="display:block;">{{ audiobook.name }}</div>
-            <div style="display:block;">{{ audiobook.release_book }}</div>
-            <div style="display:block;">{{ audiobook.release_book_germany }}</div>
-            <div style="display:block;">{{ audiobook.release_as_audio }}</div>
-            <div style="display:block;">{{ audiobook.synopsis }}</div>
-            <div style="display:block;">{{ audiobook.ro_ss }}</div>
-            <div style="display:block;">{{ audiobook.shortened }}</div>
-            <div style="display:block;">{{ audiobook.boxset }}</div>
-            <div style="display:block;">{{ audiobook.boxset_name }}</div>
-            <div style="display:block;">{{ audiobook.mp3CD }}</div>
-            <div style="display:block;">{{ audiobook.digital_only }}</div>
-            <div style="display:block;">{{ audiobook.amount_CDs }}</div>
-            <div style="display:block;">{{ audiobook.genre }}</div>
-            <div style="display:block;">{{ audiobook.comments }}</div>
-            <div style="display:block;">{{ audiobook.runtime }}</div>
+            <p>{{ audiobook.authors }}</p>
+            <p>{{ audiobook.name }}</p>
+            <p>
+                <label for="id_release_book">Erscheinungsdatum (Originales Buch):</label>
+                <input type="date" name="release_book" id="id_release_book">
+            </p>
+            <p>
+                <label for="id_release_book_germany">Erscheinungsdatum (Deutsche Fassung):</label>
+                <input type="date" name="release_book_germany" id="id_release_book_germany">
+            </p>
+            <p>
+                <label for="id_release_as_audio">Erscheinungsdatum (Audiobuch):</label>
+                <input type="date" name="release_as_audio" id="id_release_as_audio">
+            </p>
+            <p>{{ audiobook.synopsis }}</p>
+            <p><label for="id_ro_ss">Hörbuch Typ:</label>{{ audiobook.ro_ss }}</p>
+            <p><label for="id_shortened">Gekürzt:</label>{{ audiobook.shortened }}</p>
+            <p><label for="id_boxset">Teil eines Boxset:</label>{{ audiobook.boxset }}</p>
+            <p>{{ audiobook.boxset_name }}</p>
+            <p><label for="id_mp3CD">Mp3 CD:</label>{{ audiobook.mp3CD }}</p>
+            <p><label for="id_digital_only">Nur Digital:</label>{{ audiobook.digital_only }}</p>
+            <p><label for="id_amount_CDs">CDs</label>{{ audiobook.amount_CDs }}</p>
+            <p>{{ audiobook.genre }}</p>
+            <p>{{ audiobook.comments }}</p>
+            <p><label for="id_runtime">Laufzeit</label>{{ audiobook.runtime }}</p>
             <button class="termine-create-btn" type="submit">Erstellen!</button>
         </form>
     </main>
 {% endblock body %}
-
-
-<!-- fields = "authors", "name", "release_book", "release_book_germany", "release_as_audio", "synopsis", "ro_ss", "shortened", "boxset", "boxset_name", "mp3CD", "digital_only", "amount_CDs", "genre", "comments", "runtime" -->

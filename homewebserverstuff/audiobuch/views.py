@@ -105,6 +105,12 @@ def audiobView(request):
     return render(request, "audiobuch/audiob.html", context)
 
 
+class audiobDetailView(DetailView):
+    model = audiobook_model
+    template_name = "audiobuch/details_audiob.html"
+    context_object_name = "audiobook"
+
+
 def new_audiobook(request):
     if request.method == "POST":
         audiobook = audiobook_form(request.POST)

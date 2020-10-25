@@ -58,7 +58,14 @@ class audiobook(models.Model):
     amount_CDs = models.PositiveIntegerField()
     genre = models.CharField(max_length=150)
     comments = models.TextField(blank=True, null=True)
-    runtime = models.TimeField()
+    runtime = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "audiobücher"
+
+    def __str__(self):
+        return self.name
 
 
 class va(models.Model):  # Voice Actor

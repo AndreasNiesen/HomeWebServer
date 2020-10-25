@@ -50,3 +50,23 @@ class audiobook_form(forms.ModelForm):
                   "release_book_germany", "release_as_audio", "synopsis",
                   "ro_ss", "shortened", "boxset", "boxset_name", "mp3CD",
                   "digital_only", "amount_CDs", "genre", "comments", "runtime"]
+        widgets = {
+            "authors": forms.SelectMultiple(
+                attrs={"aria-label": "authors", "size": "10"}
+            ),
+            "name": forms.TextInput(
+                attrs={"placeholder": "Name", "aria-label": "name"}
+            ),
+            "synopsis": forms.Textarea(
+                attrs={"placeholder": "Synopsis", "aria-label": "synopsis", "rows": "5"}
+            ),
+            "boxset_name": forms.TextInput(
+                attrs={"placeholder": "Boxset Name", "aria-label": "boxset_name", "disabled": "disabled"}
+            ),
+            "genre": forms.TextInput(
+                attrs={"placeholder": "Genre", "aria-label": "genre"}
+            ),
+            "comments": forms.Textarea(
+                attrs={"placeholder": "Kommentare", "aria-label": "comments", "rows": "5"}
+            ),
+        }
